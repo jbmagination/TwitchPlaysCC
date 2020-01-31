@@ -94,7 +94,7 @@ function onMessageHandler (target, context, msg, self) {
         // Now let's focus on player 2!
         if (commandName.toLowerCase() === 'p2') { 
             robot.keyTap("f2"); 
-            client.say(target, `/me ${context.username} made toggled player 2!`); 
+            client.say(target, `/me ${context.username} toggled player 2!`); 
             console.log(`* ${context.username} executed the ` + commandName.toUpperCase() + ` command`); 
           } else
           if (commandName.toLowerCase() === 'p2up') { 
