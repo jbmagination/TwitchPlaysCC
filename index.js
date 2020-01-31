@@ -35,6 +35,8 @@ client.on('message', onMessageHandler);
 
 // Let's set up being connected first!
 function onConnectedHandler (addr, port) {
+    console.log(`Username: ${botname}`);
+    console.log(`Streamer: ${streamer}`);
     console.log(`* Connected to ${addr}:${port}`);
   }
 
@@ -94,7 +96,7 @@ function onMessageHandler (target, context, msg, self) {
         // Now let's focus on player 2!
         if (commandName.toLowerCase() === 'p2') { 
             robot.keyTap("f2"); 
-            client.say(target, `/me ${context.username} made toggled player 2!`); 
+            client.say(target, `/me ${context.username} toggled player 2!`); 
             console.log(`* ${context.username} executed the ` + commandName.toUpperCase() + ` command`); 
           } else
           if (commandName.toLowerCase() === 'p2up') { 
