@@ -3,6 +3,10 @@ This is a script to allow Twitch to play [Choice Chamber](https://choicechamber.
 
 When finished and tested, the code will be released here.
 
+At the moment this script only supports Windows but it will support macOS very soon.
+
+If Choice Chamber ever gets support for Linux, you bet I'll add support for that too.
+
 ## Code Setup
 
 ### Setting up the script dependencies
