@@ -64,6 +64,41 @@ if (commandName.toLowerCase() === 'jumpattack') {
   robot.keyTap("x"); 
   client.say(target, `/me ${context.username} made the character attack in mid-air!`); 
   console.log(`* ${context.username} executed the ` + commandName.toUpperCase() + ` command`); 
+} 
+if (commandName.toLowerCase() === 'doublejumpattack') { 
+  robot.keyTap("z"); 
+  robot.keyTap("z"); 
+  robot.keyTap("x"); 
+  client.say(target, `${context.username} | doublejumpattack1, doublejumpattack2, doublejumpattack3`); 
+  console.log(`* ${context.username} executed the ` + commandName.toUpperCase() + ` command`); 
+} else
+if (commandName.toLowerCase() === 'doublejumpattack1') { 
+  robot.keyTap("z"); 
+  robot.keyTap("z"); 
+  robot.keyTap("x"); 
+  client.say(target, `/me ${context.username} made the character double jump and attack in mid-air!`); 
+  console.log(`* ${context.username} executed the ` + commandName.toUpperCase() + ` command`); 
+} else
+if (commandName.toLowerCase() === 'doublejumpattack2') { 
+  robot.keyTap("z"); 
+  robot.keyTap("x"); 
+  robot.keyTap("z"); 
+  client.say(target, `/me ${context.username} made the character double jump and attack in mid-air!`); 
+  console.log(`* ${context.username} executed the ` + commandName.toUpperCase() + ` command`); 
+} else
+if (commandName.toLowerCase() === 'doublejumpattack3') { 
+  robot.keyTap("z"); 
+  robot.keyTap("x"); 
+  robot.keyTap("z");
+  robot.keyTap("x");
+  client.say(target, `/me ${context.username} made the character double jump and attack in mid-air!`); 
+  console.log(`* ${context.username} executed the ` + commandName.toUpperCase() + ` command`); 
+} else
+if (commandName.toLowerCase() === 'doublejump') { 
+  robot.keyTap("z"); 
+  robot.keyTap("z"); 
+  client.say(target, `/me ${context.username} made the character double jump!`); 
+  console.log(`* ${context.username} executed the ` + commandName.toUpperCase() + ` command`); 
 } else
 if (commandName.toLowerCase() === 'right') { 
 robot.keyTap("right"); 
@@ -196,7 +231,7 @@ if (commandName.toLowerCase() === 'hardleft') {
           } else
             // now, for a command that does NOTHING in-game!!!
             if (commandName.toLowerCase() === '!cchelp') {
-              client.say(target, `${context.username} Please visit https://jbmagination.com/TwitchPlaysCC`)
+              client.say(target, `${context.username} | Please visit https://jbmagination.com/TwitchPlaysCC`)
             } else { 
 console.log(`* Unknown command sent by ` + context.username + `: ` + commandName.toUpperCase()); 
 }
