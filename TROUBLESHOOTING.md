@@ -14,5 +14,8 @@ DO NOT show your config.json5 file on GitHub. This will allow other users to cha
 This is intentional. The script presses the appropriate key on your keyboard matching the default control mappings for Choice Chamber. If the controls do not work with your game, please set your control mappings on Choice Chamber:
 ![](http://i.gyazo.com/69b6a93ca80bc3125c766ae101464912.png)
 
+## The game isn't starting when the bot says hello!
+Try setting the `chatbot` to lowercase under `config.json5`.
+
 ## I'm having another problem that's not listed here!
 Please make an issue [here](https://github.com/jbmagination/TwitchPlaysCC/issues) and I will attempt to help you.
