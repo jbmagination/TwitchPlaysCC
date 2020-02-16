@@ -36,7 +36,7 @@
     // set this to "true".
     "backed": "false",
 
-    // If you'd like chat to only be able to control one of the characters you can toggle which here;
+    // If you'd like chat to only be able to control one of the characters you can toggle which here.
     "controlp1": false,
     "controlp2": true
 }
