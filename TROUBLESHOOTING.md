@@ -12,6 +12,7 @@ DO NOT show your config.json5 file on GitHub. This will allow other users to cha
 
 ## The script is pressing keys on my keyboard!
 This is intentional. The script presses the appropriate key on your keyboard matching the default control mappings for Choice Chamber. If the controls do not work with your game, please set your control mappings on Choice Chamber:
+![](http://i.gyazo.com/69b6a93ca80bc3125c766ae101464912.png)
 
 ## I'm having another problem that's not listed here!
 Please make an issue [here](https://github.com/jbmagination/TwitchPlaysCC/issues) and I will attempt to help you.
