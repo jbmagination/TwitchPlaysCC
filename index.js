@@ -1,3 +1,7 @@
+// TODO list:
+// Add auto-correct
+// Detect repeats
+// 
 // First of all, we get tmi.js, the Twitch API...
 const twitch = require("tmi.js");
 
@@ -19,7 +23,8 @@ const chatbot = config.chatbot;
 
 const controlp1 = config.controlp1;
 const controlp2 = config.controlp2;
-let p2bridged = false;
+let p2bridged = false; // This detects if player 2 is currently bridged.
+let pogoToggleTime = false; // This detects if someone has sent "pogoToggle" in chat.
 
 let commands = {};
 if (controlp1 && controlp2) { // Default keys for player 1 & player 2 mode
@@ -35,6 +40,7 @@ if (controlp1 && controlp2) { // Default keys for player 1 & player 2 mode
         p2up: ["w", "gizmo move up"],
         p2down: ["s", "gizmo move down"],
         p2jump: ["r", "gizmo toggle bridge-mode"],
+        p2bridge: ["r", "gizmo toggle bridge-mode"],
         p2attack: ["t", "gizmo attack"]
     };
 } else if (!controlp1 && controlp2) { // Player 1 disabled, Player 2 only mode
@@ -44,7 +50,17 @@ if (controlp1 && controlp2) { // Default keys for player 1 & player 2 mode
         up: ["w", "gizmo move up"],
         down: ["s", "gizmo move down"],
         jump: ["r", "gizmo toggle bridge-mode"],
-        attack: ["t", "gizmo attack"]
+        pogoToggle: ["toggletime", "toggled jumping"],
+        bridge: ["r", "gizmo toggle bridge-mode"],
+        attack: ["t", "gizmo attack"],
+        
+        p2left: ["a", "gizmo move left"],
+        p2right: ["d", "gizmo move right"],
+        p2up: ["w", "gizmo move up"],
+        p2down: ["s", "gizmo move down"],
+        p2jump: ["r", "gizmo toggle bridge-mode"],
+        p2bridge: ["r", "gizmo toggle bridge-mode"],
+        p2attack: ["t", "gizmo attack"]
     };
 } else if (controlp1 && !controlp2) { // Player 2 disabled, Player 1 only mode
     commands = {
@@ -67,6 +83,8 @@ const twitchconfig = {
 };
 
 // We NEED to set up our client that will be used by Twitch.
+//
+// Just so you know, the below line is for ESLint:
 // eslint-disable-next-line new-cap
 const client = new twitch.client(twitchconfig);
 // And let the code begin!
@@ -84,8 +102,8 @@ function onConnectedHandler(addr, port) {
 
 // Let's set up the chat bot. Here we go!!!
 function onMessageHandler(target, context, msg, self) {
-    let commandsExecuted = 0;
-    let lastcmd = "";
+    let commandsExecuted = 0; // This sets how many commands were executed this go around.
+    let lastcmd = ""; // This sets up our current command so we can refer to it later.
 
     if (self) {
         return;
@@ -103,7 +121,7 @@ function onMessageHandler(target, context, msg, self) {
         }
         return;
     } else if (commandName === "!cchelp") {
-        client.say(target, `[TWITCH PLAYS] ${context.username} Please visit https://jbmagination.com/TwitchPlaysCC`);
+        client.say(target, `[TWITCH PLAYS] ${context.username} Please visit https://jbmagination.com/TwitchPlaysCC`); // Sends a link to the website.
         return;
     }
 
@@ -111,6 +129,8 @@ function onMessageHandler(target, context, msg, self) {
     const commandList = commandName.split(/\s+/g);
 
     // Now let's set up our commands.
+    
+    // [TODO] Add additional comments
     let keepGoing = true;
     commandList.forEach(commandName => {
         if (!keepGoing) {
@@ -124,6 +144,10 @@ function onMessageHandler(target, context, msg, self) {
             if (commands[cmd][0] === "r") {
                 robot.keyToggle("r", p2bridged ? "up" : "down");
                 p2bridged = !p2bridged;
+            } else
+             if (commands[cmd][0] === "toggletime") {
+                robot.keyToggle("z", p2bridged ? "up" : "up");
+                pogoToggleTime = !pogoToggleTime;
             } else {
                 robot.keyTap(commands[cmd][0]);
             }
@@ -141,9 +165,9 @@ function onMessageHandler(target, context, msg, self) {
         }
     });
 
-    if (commandsExecuted === 1) {
+    if (commandsExecuted === 1) { // This checks to see if we only executed one command.
         client.say(target, `/me  [TWITCH PLAYS] ${context.username} made the ${lastcmd[1]}!`);
-    } else if (commandsExecuted > 1) {
+    } else if (commandsExecuted > 1) { // If we haven't executed just one command, it will say how many commands we ran.
         client.say(target, `/me [TWITCH PLAYS] ${context.username} executed ${commandsExecuted} commands`);
     }
 }
