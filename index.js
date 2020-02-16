@@ -32,6 +32,7 @@ if (controlp1 && controlp2) { // Default keys for player 1 & player 2 mode
         left: ["left", "character move left"],
         right: ["right", "character move right"],
         jump: ["z", "character jump"],
+        pogoToggle: ["toggletime", "toggled jumping"],
         attack: ["x", "character attack"],
 
         p2: ["f2", "toggled the gizmo"],
@@ -50,7 +51,6 @@ if (controlp1 && controlp2) { // Default keys for player 1 & player 2 mode
         up: ["w", "gizmo move up"],
         down: ["s", "gizmo move down"],
         jump: ["r", "gizmo toggle bridge-mode"],
-        pogoToggle: ["toggletime", "toggled jumping"],
         bridge: ["r", "gizmo toggle bridge-mode"],
         attack: ["t", "gizmo attack"],
         
@@ -67,6 +67,7 @@ if (controlp1 && controlp2) { // Default keys for player 1 & player 2 mode
         left: ["left", "character move left"],
         right: ["right", "character move right"],
         jump: ["z", "character jump"],
+        pogoToggle: ["toggletime", "toggled jumping"],
         attack: ["x", "character attack"]
     };
 }
