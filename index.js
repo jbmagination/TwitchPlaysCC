@@ -67,7 +67,7 @@ if (controlp1 && controlp2) { // Default keys for player 1 & player 2 mode
         left: ["left", "character move left"],
         right: ["right", "character move right"],
         jump: ["z", "character jump"],
-        pogoToggle: ["toggletime", "toggled jumping"],
+        pogotoggle: ["toggletime", "toggled jumping"],
         attack: ["x", "character attack"]
     };
 }
