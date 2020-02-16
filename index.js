@@ -147,7 +147,7 @@ function onMessageHandler(target, context, msg, self) {
                 p2bridged = !p2bridged;
             } else
              if (commands[cmd][0] === "toggletime") {
-                robot.keyToggle("z", pogoToggleTime ? "up" : "up");
+                robot.keyToggle("z", pogoToggleTime ? "down" : "down");
                 pogoToggleTime = !pogoToggleTime;
             } else {
                 robot.keyTap(commands[cmd][0]);
