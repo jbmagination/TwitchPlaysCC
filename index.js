@@ -8,6 +8,11 @@ const twitch = require("tmi.js");
 // Then, we get robotjs. This puts in our keyboard input to control the player.
 const robot = require("robotjs");
 
+// We'll use an event handler later to set up a loop later.
+var events = require('events');
+// Let's make the eventEmitter variable to call in the future.
+var eventEmitter = new events.EventEmitter();
+
 // In order to read the config file, we need to get JSON5.
 require("json5/lib/register");
 
@@ -20,9 +25,10 @@ const streamer = config.username;
 // var powers = config.powers;
 // var backed = config.backed;
 const chatbot = config.chatbot;
-
 const controlp1 = config.controlp1;
 const controlp2 = config.controlp2;
+
+// Special things!
 let p2bridged = false; // This detects if player 2 is currently bridged.
 let pogoToggleTime = false; // This detects if someone has sent "pogoToggle" in chat.
 
@@ -32,7 +38,7 @@ if (controlp1 && controlp2) { // Default keys for player 1 & player 2 mode
         left: ["left", "character move left"],
         right: ["right", "character move right"],
         jump: ["z", "character jump"],
-        pogotoggle: ["toggletime", "toggled jumping"],
+        pogotoggle: ["toggletime", "jumping toggle"],
         attack: ["x", "character attack"],
 
         p2: ["f2", "toggled the gizmo"],
@@ -67,7 +73,7 @@ if (controlp1 && controlp2) { // Default keys for player 1 & player 2 mode
         left: ["left", "character move left"],
         right: ["right", "character move right"],
         jump: ["z", "character jump"],
-        pogotoggle: ["toggletime", "toggled jumping"],
+        pogotoggle: ["toggletime", "jumping toggle"],
         attack: ["x", "character attack"]
     };
 }
@@ -141,13 +147,13 @@ function onMessageHandler(target, context, msg, self) {
         let actioned = true;
         const cmd = commandName.toLowerCase();
 
-        if (typeof commands[cmd] !== "undefined") {
-            if (commands[cmd][0] === "r") {
+        if (typeof commands[cmd] !== "undefined") { // If it's not defined anywhere in the code, it won't work.
+            if (commands[cmd][0] === "r") { // 
                 robot.keyToggle("r", p2bridged ? "up" : "down");
                 p2bridged = !p2bridged;
             } else
              if (commands[cmd][0] === "toggletime") {
-                robot.keyToggle("z", pogoToggleTime ? "down" : "down");
+                robot.keyToggle("z", pogoToggleTime ? "up" : "down");
                 pogoToggleTime = !pogoToggleTime;
             } else {
                 robot.keyTap(commands[cmd][0]);
