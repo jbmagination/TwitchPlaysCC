@@ -13,6 +13,14 @@ var events = require('events');
 // Let's make the eventEmitter variable to call in the future.
 var eventEmitter = new events.EventEmitter();
 
+// I have found NOT A SINGLE CHAT ROOM that has no misspellings for commands, so let's try to fix that.
+// FYI, this words list is based off of sinderehorus' word-list GitHub repository. I added the extra commands.
+var fs = require('fs');
+var wordList;
+fs.readFile('./words', function read(data) {
+    wordList = data;
+    fs.processFile();
+var autocorrectIt = require('autocorrect')({dictionary: wordList});
 // In order to read the config file, we need to get JSON5.
 require("json5/lib/register");
 
@@ -117,7 +125,7 @@ function onMessageHandler(target, context, msg, self) {
     } // We don't want it to trigger itself, so let's make sure that it doesn't do that.
 
     // Now, we'll need to get rid of any whitespace in our messages.
-    const commandName = msg.trim();
+    const originalCommandName = msg.trim();
 
     if (commandName === "everyone say hello! or: hi | hey | sup | yo | hola | hai | greetings | salutations | hallo | howdy | annyeong | aloha | konichiwa") {
         if (context.username === chatbot) { // This checks to see if the Choice Chamber chat bot name, or anyone who is attempting to play as or impersonate one, matches the existing chat bot.
@@ -133,8 +141,10 @@ function onMessageHandler(target, context, msg, self) {
     }
 
     // We want people to be able to run multiple commands and have it run them, so let's get that going...
-    const commandList = commandName.split(/\s+/g);
-
+    const originalCommandList = originalCommandName.split(/\s+/g);
+    // We absolutely need to fix any misspellings.
+    const commandName = autocorrectIt(originalCommandName);
+    const commandList = autocorrectIt(originalCommandList);
     // Now let's set up our commands.
     
     // [TODO] Add additional comments
@@ -145,7 +155,8 @@ function onMessageHandler(target, context, msg, self) {
         }
 
         let actioned = true;
-        const cmd = commandName.toLowerCase();
+        const originalCmd = commandName.toLowerCase();
+        const cmd = autocorrectIt(originalCmd);
 
         if (typeof commands[cmd] !== "undefined") { // If it's not defined anywhere in the code, it won't work.
             if (commands[cmd][0] === "r") { // 
@@ -180,4 +191,4 @@ function onMessageHandler(target, context, msg, self) {
 }
 
 // Finally, we can connect to Twitch and let this bad boy run.
-client.connect();
+client.connect()

@@ -5,6 +5,7 @@
 	"homepage": "https://github.com/jbmagination/TwitchPlaysCC",
 	"repository": "github:jbmagination/TwitchPlaysCC",
 	"dependencies": {
+		"autocorrect": "^1.2.0",
 		"fs": "0.0.1-security",
 		"json5": "^2.1.1",
 		"robotjs": "^0.6.0",
