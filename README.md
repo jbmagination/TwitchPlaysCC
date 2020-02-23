@@ -43,6 +43,6 @@ Thanks to Aaron (or Sojobo!) for being amazing and overhauling my code. You are 
 
 Thanks to Studio Bean for creating Choice Chamber. Insanely fun game, I will definitely get more games from you :) | [Website](https://onemrbean.com), [Game](https://choicechamber.com)
 
-Thanks to Arttuzki for giving me the idea. | Unfortunately, they have no links. If you see them in a Geometry Dash Twitch chat, tell them I said hello :)
+Thanks to Arttuzki for giving me the idea. | Unfortunately, they have no links. If you see them in a [Geometry Dash](https://www.twitch.tv/directory/game/Geometry%20Dash) Twitch chat, tell them I said hello :)
 
 And lastly, thanks to you for being interested in my project.
