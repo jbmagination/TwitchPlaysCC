@@ -126,7 +126,7 @@ function onMessageHandler(target, context, msg, self) {
     const originalCommandList = originalCommandName.split(/\s+/g);
     // We absolutely need to fix any misspellings.
     const commandName = autocorrectIt(originalCommandName);
-    const commandList = autocorrectIt(originalCommandList);
+    const commandList = commandName.split(/\s+/g);
 
     if (originalCommandName === "everyone say hello! or: hi | hey | sup | yo | hola | hai | greetings | salutations | hallo | howdy | annyeong | aloha | konichiwa") {
         if (context.username === chatbot) { // This checks to see if the Choice Chamber chat bot name, or anyone who is attempting to play as or impersonate one, matches the existing chat bot.
