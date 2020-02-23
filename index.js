@@ -19,7 +19,6 @@ var fs = require('fs');
 var wordList;
 fs.readFile('./words', function read(data) {
     wordList = data;
-    fs.processFile();
 var autocorrectIt = require('autocorrect')({dictionary: wordList});
 // In order to read the config file, we need to get JSON5.
 require("json5/lib/register");
@@ -126,8 +125,13 @@ function onMessageHandler(target, context, msg, self) {
 
     // Now, we'll need to get rid of any whitespace in our messages.
     const originalCommandName = msg.trim();
+    // We want people to be able to run multiple commands and have it run them, so let's get that going...
+    const originalCommandList = originalCommandName.split(/\s+/g);
+    // We absolutely need to fix any misspellings.
+    const commandName = autocorrectIt(originalCommandName);
+    const commandList = autocorrectIt(originalCommandList);
 
-    if (commandName === "everyone say hello! or: hi | hey | sup | yo | hola | hai | greetings | salutations | hallo | howdy | annyeong | aloha | konichiwa") {
+    if (originalCommandName === "everyone say hello! or: hi | hey | sup | yo | hola | hai | greetings | salutations | hallo | howdy | annyeong | aloha | konichiwa") {
         if (context.username === chatbot) { // This checks to see if the Choice Chamber chat bot name, or anyone who is attempting to play as or impersonate one, matches the existing chat bot.
             robot.keyTap("z"); // By default it selects "play", so pressing Z will start the game again.
             console.log("* New game");
@@ -135,16 +139,11 @@ function onMessageHandler(target, context, msg, self) {
             console.log(`* User ${context.username} attempted to send new game message`);
         }
         return;
-    } else if (commandName === "!cchelp") {
+    } else if (originalCommandName === "!cchelp") {
         client.say(target, `[TWITCH PLAYS] ${context.username} Please visit https://jbmagination.com/TwitchPlaysCC`); // Sends a link to the website.
         return;
     }
 
-    // We want people to be able to run multiple commands and have it run them, so let's get that going...
-    const originalCommandList = originalCommandName.split(/\s+/g);
-    // We absolutely need to fix any misspellings.
-    const commandName = autocorrectIt(originalCommandName);
-    const commandList = autocorrectIt(originalCommandList);
     // Now let's set up our commands.
     
     // [TODO] Add additional comments
@@ -191,4 +190,5 @@ function onMessageHandler(target, context, msg, self) {
 }
 
 // Finally, we can connect to Twitch and let this bad boy run.
-client.connect()
+client.connect();
+});
