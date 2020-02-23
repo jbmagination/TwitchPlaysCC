@@ -15,10 +15,7 @@ var eventEmitter = new events.EventEmitter();
 
 // I have found NOT A SINGLE CHAT ROOM that has no misspellings for commands, so let's try to fix that.
 // FYI, this words list is based off of sinderehorus' word-list GitHub repository. I added the extra commands.
-var fs = require('fs');
-var wordList;
-fs.readFile('./words', function read(data) {
-    wordList = data;
+var wordList = './words';
 var autocorrectIt = require('autocorrect')({dictionary: wordList});
 // In order to read the config file, we need to get JSON5.
 require("json5/lib/register");
@@ -143,10 +140,10 @@ function onMessageHandler(target, context, msg, self) {
         client.say(target, `[TWITCH PLAYS] ${context.username} Please visit https://jbmagination.com/TwitchPlaysCC`); // Sends a link to the website.
         return;
     }
-
     // Now let's set up our commands.
     
     // [TODO] Add additional comments
+
     let keepGoing = true;
     commandList.forEach(commandName => {
         if (!keepGoing) {
@@ -191,4 +188,3 @@ function onMessageHandler(target, context, msg, self) {
 
 // Finally, we can connect to Twitch and let this bad boy run.
 client.connect();
-});
