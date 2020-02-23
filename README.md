@@ -27,3 +27,17 @@ If Choice Chamber ever gets support for Linux, you can run the macOS scripts. Th
 Not much to it really, open the Start script and watch it roll.
 
 To stop it, open the Stop script. Pretty simple stuff.
+
+## Planned features
+[x] Add auto-correct
+[ ] Detect repeats
+[ ] Detect Twitch game
+[ ] Actually adding powers
+
+## Credits
+Thanks to Yann Eves for helping with the auto-correct issues I was having. | [GitHub](https://github.com/yanneves) [Twitch](https://twitch.tv/yanneves_) [Website](https://yanneves.com)
+Thanks to mdp for occasionally hopping in while giving suggestions and fixing code. | [GitHub](https://github.com/pupcus) [Website](https://pupcus.github.io)
+Thanks to Aaron (or Sojobo!) for being amazing and overhauling my code. You are the best! | [GitHub](https://github.com/Sojobo) [Twitch](https://twitch.tv/Sojobo)
+Thanks to Studio Bean for creating Choice Chamber. Insanely fun game, I will definitely get more games from you :) | [Website](https://onemrbean.com) [Game](https://choicechamber.com)
+Thanks to Arttuzki for giving me the idea. | Unfortunately, they have no links. If you see them in a Geometry Dash Twitch chat, tell them I said hello :)
+And lastly, thanks to you for being interested in my project.
