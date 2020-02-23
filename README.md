@@ -36,8 +36,13 @@ To stop it, open the Stop script. Pretty simple stuff.
 
 ## Credits
 Thanks to Yann Eves for helping with the auto-correct issues I was having. | [GitHub](https://github.com/yanneves) [Twitch](https://twitch.tv/yanneves_) [Website](https://yanneves.com)
+
 Thanks to mdp for occasionally hopping in while giving suggestions and fixing code. | [GitHub](https://github.com/pupcus) [Website](https://pupcus.github.io)
+
 Thanks to Aaron (or Sojobo!) for being amazing and overhauling my code. You are the best! | [GitHub](https://github.com/Sojobo) [Twitch](https://twitch.tv/Sojobo)
+
 Thanks to Studio Bean for creating Choice Chamber. Insanely fun game, I will definitely get more games from you :) | [Website](https://onemrbean.com) [Game](https://choicechamber.com)
+
 Thanks to Arttuzki for giving me the idea. | Unfortunately, they have no links. If you see them in a Geometry Dash Twitch chat, tell them I said hello :)
+
 And lastly, thanks to you for being interested in my project.
