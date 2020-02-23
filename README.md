@@ -29,10 +29,13 @@ Not much to it really, open the Start script and watch it roll.
 To stop it, open the Stop script. Pretty simple stuff.
 
 ## Planned features
-[x] Add auto-correct
-[ ] Detect repeats
-[ ] Detect Twitch game
-[ ] Actually adding powers
+- [x] Add auto-correct
+
+- [ ] Detect repeats
+
+- [ ] Detect Twitch game
+
+- [ ] Actually adding powers
 
 ## Credits
 Thanks to Yann Eves for helping with the auto-correct issues I was having. | [GitHub](https://github.com/yanneves), [Twitch](https://twitch.tv/yanneves_), [Website](https://yanneves.com)
