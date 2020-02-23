@@ -7,6 +7,8 @@ At the moment this script only supports Windows but it will support macOS very s
 
 If Choice Chamber ever gets support for Linux, you can run the macOS scripts. They will work as normal.
 
+[i]Want to see code for the website? Head [here](https://github.com/jbmagination/TwitchPlaysCC/tree/gh-pages).[/i]
+
 ## Code Setup
 
 ### Setting up the script dependencies
