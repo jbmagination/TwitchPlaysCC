@@ -12,9 +12,10 @@ If Choice Chamber ever gets support for Linux, you can run the macOS scripts. Th
 ## Code Setup
 
 ### Setting up the script dependencies
-1. Head to the [Node.js website](https://nodejs.org) and download the latest release.
-2. Run the Setup file. It will install everything that is needed to run the script.
-3. Restart your computer if desired.
+1. Head to the [Python download page](https://www.python.org/downloads/) and download Python. Make sure Python is added to PATH.
+2. Head to the [Node.js website](https://nodejs.org) and download a release. Latest is preferred.
+3. Run the Setup file. It will install everything that is needed to run the script.
+4. Restart your computer if desired.
 
 ### Configurating the script
 1. Head to the [OAuth Password Generator](https://twitchapps.com/tmi/) and copy your OAuth key.
