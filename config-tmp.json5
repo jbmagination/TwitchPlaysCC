@@ -17,7 +17,7 @@
     // make your OAuth key. This will behave
     // as the application's special "password".
     // The current OAuth key will NOT work.
-    "oauth": "oauth:TWITCHPLAYp0gch4mpxdLULKAPPACC",
+    "oauth": "oauth:XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
     "username": "",
 
     // This is what you input as the chat bot in
