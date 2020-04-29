@@ -1,7 +1,7 @@
 // TODO list:
-// Add auto-correct
 // Detect repeats
-// 
+//  
+//
 // First of all, we get tmi.js, the Twitch API...
 const twitch = require("tmi.js");
 
@@ -19,10 +19,9 @@ var wordList = './words';
 var autocorrectIt = require('autocorrect')({dictionary: wordList});
 // In order to read the config file, we need to get JSON5.
 require("json5/lib/register");
-
 // Now, let's actually call for the file.
 const config = require("./config.json5");
-// We have the file now, let's simplify our lives now.
+// Now that we have the config file, let's make our lives a little bit easier.
 const botname = config.bot;
 const oauth = config.oauth;
 const streamer = config.username;
@@ -38,12 +37,18 @@ let pogoToggleTime = false; // This detects if someone has sent "pogoToggle" in 
 
 let commands = {};
 if (controlp1 && controlp2) { // Default keys for player 1 & player 2 mode
-    commands = {
+    commands = { // This maps each command.
         left: ["left", "character move left"],
         right: ["right", "character move right"],
         jump: ["z", "character jump"],
         pogotoggle: ["toggletime", "jumping toggle"],
         attack: ["x", "character attack"],
+
+        p1left: ["left", "character move left"],
+        p1right: ["right", "character move right"],
+        p1jump: ["z", "character jump"],
+        p1pogotoggle: ["toggletime", "jumping toggle"],
+        p1attack: ["x", "character attack"],
 
         p2: ["f2", "toggled the gizmo"],
         p2left: ["a", "gizmo move left"],
@@ -55,7 +60,7 @@ if (controlp1 && controlp2) { // Default keys for player 1 & player 2 mode
         p2attack: ["t", "gizmo attack"]
     };
 } else if (!controlp1 && controlp2) { // Player 1 disabled, Player 2 only mode
-    commands = {
+    commands = { // And we do it again...
         left: ["a", "gizmo move left"],
         right: ["d", "gizmo move right"],
         up: ["w", "gizmo move up"],
@@ -73,12 +78,18 @@ if (controlp1 && controlp2) { // Default keys for player 1 & player 2 mode
         p2attack: ["t", "gizmo attack"]
     };
 } else if (controlp1 && !controlp2) { // Player 2 disabled, Player 1 only mode
-    commands = {
+    commands = { // And then a shorter, much simpler one for player 2 only.
         left: ["left", "character move left"],
         right: ["right", "character move right"],
         jump: ["z", "character jump"],
         pogotoggle: ["toggletime", "jumping toggle"],
-        attack: ["x", "character attack"]
+        attack: ["x", "character attack"],
+        
+        p1left: ["left", "character move left"],
+        p1right: ["right", "character move right"],
+        p1jump: ["z", "character jump"],
+        p1pogotoggle: ["toggletime", "jumping toggle"],
+        p1attack: ["x", "character attack"]
     };
 }
 
@@ -98,7 +109,8 @@ const twitchconfig = {
 // Just so you know, the below line is for ESLint:
 // eslint-disable-next-line new-cap
 const client = new twitch.client(twitchconfig);
-// And let the code begin!
+
+// And with that, let the code begin!
 
 // So, firstly we need to make sure that we can make certain things occur on certain events.
 // In this case, we detect when the bot connects to Twitch, and when someone sends a message in chat.
@@ -111,7 +123,7 @@ function onConnectedHandler(addr, port) {
     client.say(streamer, "/me [TWITCH PLAYS] Bot is online!");
 }
 
-// Let's set up the chat bot. Here we go!!!
+// Let's set up the chat bot.
 function onMessageHandler(target, context, msg, self) {
     let commandsExecuted = 0; // This sets how many commands were executed this go around.
     let lastcmd = ""; // This sets up our current command so we can refer to it later.
@@ -133,7 +145,7 @@ function onMessageHandler(target, context, msg, self) {
             robot.keyTap("z"); // By default it selects "play", so pressing Z will start the game again.
             console.log("* New game");
         } else {
-            console.log(`* User ${context.username} attempted to send new game message`);
+            console.log(`* User ${context.username} attempted to send new game message but didn't match usernames with name ${chatbot}`);
         }
         return;
     } else if (originalCommandName === "!cchelp") {
@@ -141,41 +153,39 @@ function onMessageHandler(target, context, msg, self) {
         return;
     }
     // Now let's set up our commands.
-    
-    // [TODO] Add additional comments
 
-    let keepGoing = true;
-    commandList.forEach(commandName => {
-        if (!keepGoing) {
-            return;
+    let keepGoing = true; // This line lets the commands run.
+    commandList.forEach(commandName => { // For each command,
+        if (!keepGoing) { //                if the keepGoing command is set to false,
+            return; //                      do nothing.
         }
 
-        let actioned = true;
-        const originalCmd = commandName.toLowerCase();
-        const cmd = autocorrectIt(originalCmd);
+        let actioned = true; // This tells sets a variable for use in the console, to log what commands were run.
+        const originalCmd = commandName.toLowerCase(); // This is the original command set in lowercase.
+        const cmd = autocorrectIt(originalCmd); // This auto-corrects the command.
 
         if (typeof commands[cmd] !== "undefined") { // If it's not defined anywhere in the code, it won't work.
-            if (commands[cmd][0] === "r") { // 
-                robot.keyToggle("r", p2bridged ? "up" : "down");
-                p2bridged = !p2bridged;
+            if (commands[cmd][0] === "r") { // R is the key on our keyboard that we are going to be pushing...
+                robot.keyToggle("r", p2bridged ? "up" : "down"); // So we'll toggle it every time that command is run.
+                p2bridged = !p2bridged; // This then toggles the state of p2bridged so that it can be toggled again when it's run next.
             } else
-             if (commands[cmd][0] === "toggletime") {
-                robot.keyToggle("z", pogoToggleTime ? "up" : "down");
-                pogoToggleTime = !pogoToggleTime;
+             if (commands[cmd][0] === "toggletime") { // A fake key, "toggletime", is for pogotoggle.
+                robot.keyToggle("z", pogoToggleTime ? "up" : "down"); // Once again, we toggle the Z button.
+                pogoToggleTime = !pogoToggleTime; // Then toggling the state.
             } else {
-                robot.keyTap(commands[cmd][0]);
+                robot.keyTap(commands[cmd][0]); // If it's none of the "commands" above, we'll simply tap the key.
             }
-            lastcmd = commands[cmd];
-            commandsExecuted++;
+            lastcmd = commands[cmd]; // This sets the "lastcmd" variable to our current command.
+            commandsExecuted++; // It also adds to the command counter to change the message depending on how many commands were run.
         } else {
-            console.log(`* Unknown command sent by ${context.username}: ${commandName.toUpperCase()}`);
-            actioned = false;
-            keepGoing = false;
+            console.log(`* Unknown command sent by ${context.username}: ${commandName.toUpperCase()}`); // If there's no command, log that it didn't know the command.
+            actioned = false; // Set "actioned" to false so nothing is logged.
+            keepGoing = false; // Set keepGoing to false so nothing is done.
             return;
         }
 
-        if (actioned) {
-            console.log(`* ${context.username} executed the ${commandName.toUpperCase()} command`);
+        if (actioned) { //                                                                             If actioned is enabled,
+            console.log(`* ${context.username} executed the ${commandName.toUpperCase()} command`); // say that a command was run.
         }
     });
 
