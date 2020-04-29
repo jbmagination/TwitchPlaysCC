@@ -13,6 +13,7 @@ If Choice Chamber ever gets support for Linux, you can run the macOS scripts. Th
 
 ### Setting up the script dependencies
 1. Head to the [Python download page](https://www.python.org/downloads/) and download Python. Make sure Python is added to PATH.
+2. Head to the [Visual Studio 2013 download page] and download the Community with Update 5 version as an EXE. You may need to create a Microsoft account.
 2. Head to the [Node.js website](https://nodejs.org) and download a release. Latest is preferred.
 3. Run the Setup file. It will install everything that is needed to run the script.
 4. Restart your computer if desired.
