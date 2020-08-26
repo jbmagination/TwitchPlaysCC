@@ -1,3 +1,6 @@
+### Notice
+This is still going to be worked on as of now, however it will be discontinued very soon when a new mod I'm working on is released. Learn more soon!
+
 # Twitch Plays Choice Chamber
 This is a script to allow Twitch to play [Choice Chamber](https://choicechamber.com). Choice Chamber is a game where the Twitch chat can decide your fate, but this script allows it to control the player!
 
